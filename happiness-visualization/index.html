@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags for responsiveness and character encoding -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>World Happiness Dashboard</title>
+  
+  <!-- External CSS stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Load D3.js for data visualization -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <h1>🌍 World Happiness Report (2015–2022)</h1>
+  </header>
+
+  <!-- Navigation Tabs for Switching Views -->
+  <nav class="tab-nav">
+    <button class="tab-button active" data-tab="map">Happiness Score by Country</button>
+    <button class="tab-button" data-tab="line">Trends Over Time</button>
+    <button class="tab-button" data-tab="bar">Top 10 Happiest Countries</button>
+    <button class="tab-button" data-tab="scatter">Factors vs Happiness Score</button>
+  </nav>
+
+  <!-- Main Content Area with Tab Panels -->
+  <main class="tab-content">
+    
+    <!-- Map Visualization Tab -->
+    <div id="map" class="tab-panel active">
+      <div class="controls" style="margin-bottom: 10px;">
+        <!-- Year Selection Dropdown -->
+        <label for="year-select">Year:</label>
+        <select id="year-select"></select>
+
+        <!-- Country Selection Dropdown -->
+        <label for="country-select">Country:</label>
+        <select id="country-select"></select>
+      </div>
+
+      <!-- Map Visualization Container -->
+      <div id="map-chart" class="chart-box"></div>
+      <div id="legend"></div>
+      <div id="insights" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Line Chart Tab -->
+    <div id="line" class="tab-panel">
+      <div id="line-chart" class="chart-box">
+
+        <!-- Single Country Dropdown -->
+        <div id="country-dropdown"></div>
+
+        <!-- Line Chart for Single Country -->
+        <div id="country-line-chart"></div>
+
+        <!-- Multi-Country Comparison Section -->
+        <h3 style="margin-top: 30px;"> Compare up to 4 Countries</h3>
+        <div id="multi-select-container" style="margin-bottom: 15px;">
+          <label for="multi-country-select">Select Countries:</label>
+          <select id="multi-country-select" multiple size="6" style="max-width: 100%; width: 300px;"></select>
+          <small>(Hold Ctrl/Cmd to select multiple, max 4)</small>
+        </div>
+
+        <!-- Chart for Country Comparison -->
+        <div id="comparison-chart" class="chart-box"></div>
+      </div>
+    </div>
+
+    <!-- Bar Chart Tab -->
+    <div id="bar" class="tab-panel">
+      <div class="controls" style="margin-bottom: 10px;">
+        <!-- Year Selector -->
+        <label for="bar-year-select">Year:</label>
+        <select id="bar-year-select"></select>
+
+        <!-- Sort Option Selector -->
+        <label for="bar-sort">Sort by:</label>
+        <select id="bar-sort">
+          <option value="descending">Score ↓</option>
+          <option value="ascending">Score ↑</option>
+        </select>
+      </div>
+
+      <!-- Bar Chart Display -->
+      <div id="bar-chart" class="chart-box"></div>
+
+      <!-- Optional Insights Below Chart -->
+      <div id="bar-insights" style="margin-top: 20px; font-size: 14px; color: #333;"></div>
+    </div>
+
+    <!-- Scatter Plot Tab -->
+    <div id="scatter" class="tab-panel">
+      <div class="controls" style="margin-bottom: 10px;">
+        <!-- Year Dropdown -->
+        <label for="scatter-year-select">Year:</label>
+        <select id="scatter-year-select"></select>
+
+        <!-- Feature Dropdown -->
+        <label for="scatter-feature-select" style="margin-left: 20px;">Select Feature:</label>
+        <select id="scatter-feature-select">
+          <option value="GDP">GDP</option>
+          <option value="Social_Support">Social Support</option>
+          <option value="Life_Expectancy">Life Expectancy</option>
+          <option value="Freedom">Freedom</option>
+          <option value="Generosity">Generosity</option>
+          <option value="Corruption">Corruption</option>
+        </select>
+      </div>
+
+      <!-- Scatter Plot Visualization -->
+      <div id="scatter-plot" class="chart-box"></div>
+    </div>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2025 World Happiness Dashboard | Powered by D3.js</p>
+  </footer>
+
+  <!-- Load JS files for each visualization -->
+  <script src="js/map.js"></script>
+  <script src="js/line.js"></script>
+  <script src="js/bar.js"></script>
+  <script src="js/scatter.js"></script>
+
+  <!-- Tab Switching Script -->
+  <script>
+    // Handle tab switching functionality
+    const buttons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove 'active' class from all buttons and panels
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+
+        // Add 'active' class to clicked button and corresponding panel
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

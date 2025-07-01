@@ -1,0 +1,132 @@
+/* ==========  General Page Layout ========== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f7f9; /* Light background for visual cleanliness */
+  color: #333;          /* Standard dark text color */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========== Header ========== */
+.header {
+  background: #007f8c;     /* Teal blue theme */
+  color: white;
+  padding: 0.3rem 0.75rem; /* Compact vertical padding */
+  font-size: 1rem;         /* Smaller, cleaner font */
+  text-align: center;
+}
+
+/* ==========  Tab Navigation ========== */
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #e0f7fa; /* Light cyan for clarity */
+  padding: 0.5rem;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  margin: 0 10px;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s ease;
+}
+
+.tab-button.active {
+  border-bottom: 3px solid #007f8c; /* Highlight active tab */
+  font-weight: bold;
+}
+
+/* ==========  Main Content Area ========== */
+main.tab-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;  /* Tight side spacing for more chart width */
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* Each Tab Panel (Chart Sections) */
+.tab-panel {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tab-panel.active {
+  display: flex;
+}
+
+/* ==========  Chart Container Box ========== */
+.chart-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 2rem;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  max-width: 100%;
+  flex: 1;
+  min-height: 60vh; /* Occupies significant screen area */
+  height: auto;
+}
+
+/* ==========  Dropdown Controls ========== */
+#country-dropdown,
+#multi-select-container {
+  margin-bottom: 20px;
+}
+
+/* Styling for dropdowns */
+#multi-country-select,
+#line-country-select {
+  width: 100%;
+  max-width: 400px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+/* ==========  Tooltip Styling ========== */
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #999;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  max-width: 220px;
+  z-index: 10;
+}
+
+/* ==========  Footer ========== */
+.footer {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  background: #ccc;
+  margin-top: auto;
+  z-index: 2;
+}
+
+/* ==========  SVG Defaults ========== */
+svg text {
+  font-size: 12px;
+  pointer-events: none;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
